@@ -144,3 +144,67 @@ body.lock-scroll {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* --------------------------------------------
+  CARD STYLES
+--------------------------------------------- */
+.object-fit-cover {
+  object-fit: cover;
+}
+
+/* ---------------------------------------------
+  FOOTER STYLES
+--------------------------------------------- */
+.custom-footer {
+  background-color: #0c0c0c;
+  color: #ccc;
+  padding: 3rem 1rem;
+  border-top: 1px solid #222;
+  position: relative;
+  font-family: 'Inter', sans-serif;
+}
+
+.footer-text {
+  color: #999;
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+
+.footer-link {
+  color: #bbb;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #fff;
+}
+
+.footer-socials a {
+  color: #bbb;
+  font-size: 1.3rem;
+  transition: color 0.3s;
+}
+
+.footer-socials a:hover {
+  color: #fff;
+}
+
+.back-to-top {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  z-index: 99;
+}
+
+.back-to-top:hover {
+  background: #444;
+}
