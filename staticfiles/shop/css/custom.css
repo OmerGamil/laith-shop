@@ -1,0 +1,146 @@
+/* --------------------------------------------
+  GENERAL & SCROLL BEHAVIOR
+--------------------------------------------- */
+html, body {
+  overscroll-behavior: none;
+}
+
+body.lock-scroll {
+  overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding-bottom: 1rem;
+  }
+}
+
+/* --------------------------------------------
+  NAVBAR STYLES
+--------------------------------------------- */
+.navbar-dark .navbar-nav .nav-link,
+.navbar-dark .navbar-brand {
+  color: white !important;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-brand:hover,
+.navbar .bi:hover {
+  color: #d4f1c5 !important;
+}
+
+.navbar-toggler {
+  color: white;
+  border: none;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='white' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Navbar slide-in */
+.navbar {
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: all 0.8s ease;
+}
+
+.navbar.show-nav {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.navbar.scrolled {
+  background-color: #0b4228 !important;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* --------------------------------------------
+  HERO SECTION & ANIMATION
+--------------------------------------------- */
+.hero-section {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  animation: hero-animation 1.8s ease forwards;
+}
+
+@keyframes hero-animation {
+  0%, 50% {
+    height: 100vh;
+  }
+  100% {
+    height: 80vh;
+  }
+}
+
+.hero-section .overlay {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Hero heading animation (shown first) */
+.hero-heading {
+  transform: scale(1.4);
+  transition: transform 1.4s ease 0.4s;
+  z-index: 2;
+  color: white !important;
+}
+
+.hero-heading.animate-to-position {
+  position: relative;
+  top: auto;
+  left: auto;
+  transform: none;
+}
+
+/* Subheading + button slide-in */
+.hero-content {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 1s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --------------------------------------------
+  SUBTEXT & BUTTON STYLES
+--------------------------------------------- */
+.hero-subtitle {
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.hero-btn {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+}
+
+.hero-btn:hover {
+  background-color: #0b4228;
+  color: white;
+  border-color: #0b4228;
+}
+
+/* --------------------------------------------
+  REVEAL WHITE SECTION AFTER HERO
+--------------------------------------------- */
+.reveal-next {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: all 1s ease;
+}
+
+.reveal-next.show {
+  opacity: 1;
+  transform: translateY(0);
+}
