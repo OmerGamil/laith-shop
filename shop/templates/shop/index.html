@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home - Earth Store{% endblock %}
+
+{% block hero %}
+<header class="hero-section homepage-hero" style="background: url('{% static 'shop/assets/hero-bg.jpg' %}') no-repeat center center / cover;">
+  <div class="overlay"></div>
+
+  <div class="container h-100 d-flex flex-column justify-content-center align-items-center position-relative">
+    
+    <!-- 👇 Animated heading starts centered and large -->
+    <h1 class="hero-heading display-2 fw-bold mb-2">EARTH</h1>
+
+    <!-- 👇 Subtitle and button fade in after heading -->
+    <div class="text-center text-white hero-content mt-3">
+      <p class="hero-subtitle lead fw-normal mb-4">MULTIPURPOSE STORE</p>
+      <a class="btn btn-light btn-lg px-5 fw-semibold hero-btn" href="#shop">SHOP NOW</a>
+    </div>
+  </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<!-- 👇 Reveal animation wrapper for white section -->
+<div class="reveal-next">
+  <section id="shop" class="shop-content py-5 bg-white">
+    <div class="container px-4 px-lg-5 mt-5">
+      <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        
+        <!-- 🛒 Dummy product cards -->
+        {% for i in "12345678" %}
+        <div class="col mb-5">
+          <div class="card h-100">
+            {% if forloop.counter|divisibleby:2 %}
+              <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+            {% endif %}
+            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="Product Image" />
+            <div class="card-body p-4">
+              <div class="text-center">
+                <h5 class="fw-bolder">Product {{ forloop.counter }}</h5>
+                {% if forloop.counter|divisibleby:3 %}
+                  <span class="text-muted text-decoration-line-through">$50.00</span> $25.00
+                {% else %}
+                  $40.00 - $80.00
+                {% endif %}
+              </div>
+            </div>
+            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+              <div class="text-center">
+                <a class="btn btn-outline-dark mt-auto" href="#">View options</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}
