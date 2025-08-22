@@ -115,7 +115,7 @@ body.lock-scroll { overflow: hidden; }
 }
 
 .category-rail{
-  gap:1rem; background:var(--rail-bg); padding:.6rem; border-radius:9999px; 
+  gap:1rem; background:var(--rail-bg); padding:.6rem; border-radius:2rem; 
   max-width:1100px; margin-inline:auto; align-items:center;
 }
 .category-rail .nav-item{ flex:0 0 auto; }

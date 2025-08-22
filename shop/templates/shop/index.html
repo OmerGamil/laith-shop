@@ -24,7 +24,7 @@
       {# sticky, rounded rail #}
       <nav class="category-nav sticky-top" style="top:64px">
         <div class="d-flex flex-column align-items-center gap-3">
-          <ul class="category-rail nav flex-nowrap overflow-auto no-scrollbar mx-auto">
+          <ul class="category-rail nav flex-wrap overflow-auto no-scrollbar w-100">
             {% for s in sections %}
               <li class="nav-item">
                 <a class="nav-link category-link{% if forloop.first and not is_search %} active{% endif %}"
