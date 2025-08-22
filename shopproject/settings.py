@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "herokuapp.com"]
 
 # Application definition
 
@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'cloudinary',
+    'cloudinary_storage',
+    'django_summernote',
     'shop',
 ]
 
@@ -47,6 +51,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware', 
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -63,6 +68,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.i18n',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -73,6 +79,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'shopproject.wsgi.application'
 
+SITE_ID = 1
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
@@ -108,13 +115,26 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'de' 
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
+
+# Supported languages
+LANGUAGES = [
+    ('de', 'Deutsch'),
+    ('ar', 'العربية'),
+]
+
+# Path to translation files
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
 
 
 # Static files (CSS, JavaScript, Images)
@@ -128,6 +148,8 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
 # Security settings
 SECURE_SSL_REDIRECT = False  # Set to True in production

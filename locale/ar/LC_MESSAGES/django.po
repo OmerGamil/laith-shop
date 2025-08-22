@@ -1,0 +1,144 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-22 03:12+0200\n"
+"PO-Revision-Date: 2025-08-22 03:20+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"X-Generator: Poedit 3.6\n"
+
+#: shop/models.py:78
+msgid "Name (Arabic)"
+msgstr ""
+
+#: shop/models.py:84
+msgid "Name (German)"
+msgstr ""
+
+#: shop/models.py:89
+msgid "Category"
+msgstr ""
+
+#: shop/models.py:90
+msgid "Categories"
+msgstr ""
+
+#: shop/models.py:111
+msgid "SKU"
+msgstr ""
+
+#: shop/models.py:112
+msgid "Price"
+msgstr ""
+
+#: shop/models.py:113
+msgid "Sale Price"
+msgstr ""
+
+#: shop/models.py:114
+msgid "Stock"
+msgstr ""
+
+#: shop/models.py:115
+msgid "Active"
+msgstr ""
+
+#: shop/models.py:122
+msgid "Product"
+msgstr ""
+
+#: shop/models.py:123
+msgid "Products"
+msgstr ""
+
+#: shop/models.py:149
+msgid "Arabic"
+msgstr ""
+
+#: shop/models.py:150
+msgid "German"
+msgstr ""
+
+#: shop/models.py:159
+msgid "Product Translation"
+msgstr ""
+
+#: shop/models.py:160
+msgid "Product Translations"
+msgstr ""
+
+#: shop/templates/shop/index.html:4 templates/base.html:23
+msgid "Startseite"
+msgstr "الرئيسية"
+
+#: shop/templates/shop/index.html:12
+msgid "Vielseitiger Online-Shop"
+msgstr "متجر متعدد الاستخدامات عبر الإنترنت"
+
+#: shop/templates/shop/index.html:13
+msgid "Jetzt einkaufen"
+msgstr "تسوق الآن"
+
+#: shop/templates/shop/index.html:45
+msgid "Keine Produkte gefunden."
+msgstr "لم يتم العثور على أي منتجات."
+
+#: shop/templates/shop/partials/card.html:9
+msgid "Angebot"
+msgstr "عرض"
+
+#: shop/templates/shop/partials/card.html:44
+msgid "In den Warenkorb"
+msgstr "أضف إلى السلة"
+
+#: shop/views.py:23
+msgid "Sonstiges"
+msgstr "متنوع"
+
+#: templates/base.html:24
+msgid "Über uns"
+msgstr "من نحن"
+
+#: templates/base.html:25
+msgid "Shop"
+msgstr "المتجر"
+
+#: templates/base.html:26
+msgid "Kontakt"
+msgstr "تواصل معنا"
+
+#: templates/base.html:57
+msgid "Datenschutz"
+msgstr "حماية البيانات"
+
+#: templates/base.html:58
+msgid "AGB"
+msgstr "‫AGB"
+
+#: templates/base.html:59
+msgid "Support"
+msgstr "الدعم"
+
+#: templates/base.html:66
+msgid "Dein Shop für alles – Qualität trifft Einfachheit."
+msgstr "متجرك لكل ما تحتاجه – الجودة تلتقي بالبساطة."
+
+#: templates/base.html:76
+msgid "Alle Rechte vorbehalten."
+msgstr "جميع الحقوق محفوظة."
+
+#: templates/base.html:80
+msgid "Nach oben"
+msgstr "لأعلى"

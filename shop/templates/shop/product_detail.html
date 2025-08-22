@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="row g-4">
+    <div class="col-md-6">
+      {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product }}" class="img-fluid rounded">
+      {% endif %}
+    </div>
+    <div class="col-md-6">
+      <h1 class="h3">{{ product.name|default:product.title|default:product }}</h1>
+      {% if product.price %}<p class="fs-4 fw-semibold">{{ product.price }} €</p>{% endif %}
+      {% if product.description %}<p>{{ product.description }}</p>{% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

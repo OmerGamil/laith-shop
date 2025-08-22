@@ -1,22 +1,40 @@
-<div class="card h-100">
-  {% if show_sale %}
-    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+{# templates/shop/partials/card.html #}
+{% load i18n static %}
+
+<div class="card h-100 border-0 shadow-sm rounded-3 product-card">
+
+  {% if product.sale_price and product.price and product.sale_price < product.price %}
+    <div class="badge bg-dark text-white position-absolute rounded-pill px-3 py-2" style="top:.75rem; right:.75rem;">
+      {% trans "Angebot" %}
+    </div>
   {% endif %}
 
-    <div class="card-img-top ratio ratio-1x1 overflow-hidden">
-        <img src="{{ image_url }}" alt="{{ title }}" class="w-100 h-100 object-fit-cover">
-    </div>
-  
-  <div class="card-body p-4">
-    <div class="text-center">
-      <h5 class="fw-bolder">{{ title }}</h5>
-      {{ price_html|safe }}
-    </div>
+  <div class="card-img-top ratio ratio-1x1 overflow-hidden">
+    {% if product.image %}
+      <img src="{{ product.image.url }}" alt="{{ product.display_title }}" class="w-100 h-100 object-fit-cover rounded-top-3">
+    {% else %}
+      <img src="{% static 'shop/assets/placeholder.png' %}" alt="{{ product.display_title }}" class="w-100 h-100 object-fit-cover rounded-top-3">
+    {% endif %}
   </div>
 
-  <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-    <div class="text-center">
-      <a class="btn btn-outline-dark mt-auto" href="#">View options</a>
-    </div>
+  <div class="card-body p-4 text-center">
+    <h5 class="fw-bold">{{ product.display_title }}</h5>
+    {# optional teaser #}
+    {# <p class="text-muted small mt-2">{{ product.display_description|truncatechars:80 }}</p> #}
+
+    {% if product.sale_price and product.price and product.sale_price < product.price %}
+      <div>
+        <span class="text-muted text-decoration-line-through">{{ product.price }} €</span>
+        <span class="fw-semibold ms-2">{{ product.sale_price }} €</span>
+      </div>
+    {% else %}
+      <div class="fw-semibold">{{ product.price }} €</div>
+    {% endif %}
+  </div>
+
+  <div class="card-footer bg-white border-0 text-center pb-4">
+    <a class="btn btn-outline-dark rounded-3 px-4 py-2 fw-semibold" href="#">
+      {% trans "In den Warenkorb" %}
+    </a>
   </div>
 </div>

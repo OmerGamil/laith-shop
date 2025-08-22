@@ -58,3 +58,8 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.classList.remove("lock-scroll");
   }, 1800);
 });
+
+// 4. Scroll to top button
+function scrollToTop() {
+window.scrollTo({ top: 0, behavior: 'smooth' });
+}

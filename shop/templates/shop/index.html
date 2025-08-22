@@ -1,38 +1,88 @@
 {% extends "base.html" %}
-{% load static %}
+{% load i18n static %}
 
-{% block title %}Home - Earth Store{% endblock %}
+{% block title %}{% trans "Startseite" %} - Earth Store{% endblock %}
 
 {% block hero %}
 <header class="hero-section homepage-hero" style="background: url('{% static 'shop/assets/hero-bg.jpg' %}') no-repeat center center / cover;">
   <div class="overlay"></div>
-
   <div class="container h-100 d-flex flex-column justify-content-center align-items-center position-relative">
-    
-    <!-- 👇 Animated heading starts centered and large -->
     <h1 class="hero-heading display-2 fw-bold mb-2">EARTH</h1>
-
-    <!-- 👇 Subtitle and button fade in after heading -->
     <div class="text-center text-white hero-content mt-3">
-      <p class="hero-subtitle lead fw-normal mb-4">MULTIPURPOSE STORE</p>
-      <a class="btn btn-light btn-lg px-5 fw-semibold hero-btn" href="#shop">SHOP NOW</a>
+      <p class="hero-subtitle lead fw-normal mb-4">{% trans "Vielseitiger Online-Shop" %}</p>
+      <a class="btn btn-light btn-lg px-5 fw-semibold hero-btn" href="#shop">{% trans "Jetzt einkaufen" %}</a>
     </div>
   </div>
 </header>
 {% endblock %}
 
 {% block content %}
-<!-- 👇 Reveal animation wrapper for white section -->
 <div class="reveal-next">
   <section id="shop" class="shop-content py-6 bg-white">
     <div class="container px-4 px-lg-5 mt-5">
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-        {% for product in products %}
-            <div class="col mb-5">
-                {% include 'shop/partials/card.html' with title=product.title image_url=product.image_url show_sale=product.show_sale price_html=product.price_html %}
+      {% if sections %}
+      {# sticky, rounded rail #}
+      <nav class="category-nav sticky-top" style="top:64px">
+        <div class="d-flex flex-column align-items-center gap-3">
+          <ul class="category-rail nav flex-nowrap overflow-auto no-scrollbar mx-auto">
+            {% for s in sections %}
+              <li class="nav-item">
+                <a class="nav-link category-link{% if forloop.first and not is_search %} active{% endif %}"
+                  href="#{{ s.anchor }}" data-anchor="{{ s.anchor }}">
+                  {{ s.label }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+
+          <!-- Search pill -->
+          <form class="shop-search" method="get" action="">
+            <label class="visually-hidden" for="shop-q">{% trans "Im Shop suchen" %}</label>
+            <div class="search-pill">
+              <!-- simple inline search icon -->
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="search-ic">
+                <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+                <path d="M20 20L17 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+
+              <input id="shop-q" name="q" type="search"
+                    class="search-input"
+                    value="{{ q|default_if_none:'' }}"
+                    placeholder="{% trans 'Produkte suchen…' %}">
+              {% if q %}
+                <button class="clear-btn" type="button"
+                        aria-label="{% trans 'Suche löschen' %}"
+                        onclick="const i=document.getElementById('shop-q');i.value=''; this.form.submit();">&times;</button>
+              {% endif %}
+              <button class="search-btn" type="submit">{% trans 'Suchen' %}</button>
             </div>
-        {% endfor %}
+          </form>
         </div>
+      </nav>
+      {% if is_search %}
+        <p class="text-muted text-center mt-2">
+          {% blocktrans %}Ergebnisse für “{{ q }}”{% endblocktrans %}
+        </p>
+      {% endif %}
+      {% endif %}
+      {# sections #}
+      {% for section in sections %}
+      <h2 id="{{ section.anchor }}" class="section-heading display-6 fw-semibold mt-5 mb-4">
+        {{ section.label }}
+      </h2>
+
+        <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xxl-4">
+          {% for product in section.products %}
+            <div class="col mb-5">
+              {% include 'shop/partials/card.html' with product=product %}
+            </div>
+          {% empty %}
+            <p class="text-muted">{% trans "Keine Produkte in dieser Kategorie." %}</p>
+          {% endfor %}
+        </div>
+      {% empty %}
+        <p class="text-center text-muted">{% trans "Keine Produkte gefunden." %}</p>
+      {% endfor %}
     </div>
   </section>
 </div>
