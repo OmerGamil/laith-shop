@@ -10,19 +10,19 @@
   <link href="{% static 'shop/css/styles.css' %}" rel="stylesheet" />
   <link href="{% static 'shop/css/custom.css' %}" rel="stylesheet" />
 </head>
-<body>
+<body class="{% block full_page %}{% endblock %}">
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
     <div class="container px-5">
-      <a class="navbar-brand fw-bold" href="#">EARTH STORE</a>
+      <a class="navbar-brand fw-bold" href="{% url 'shop:home' %}">EARTH STORE</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav me-3">
-          <li class="nav-item"><a class="nav-link" href="#">{% trans "Startseite" %}</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'shop:home' %}">{% trans "Startseite" %}</a></li>
           <li class="nav-item"><a class="nav-link" href="#">{% trans "Über uns" %}</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">{% trans "Kontakt" %}</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">{% trans "Kontakt" %}</a></li>
         </ul>
         <form action="{% url 'set_language' %}" method="post" class="language-form d-flex gap-1 py-2 py-lg-0 px-lg-3">
           {% if redirect_to %}
@@ -35,16 +35,24 @@
           <button type="submit" name="language" value="de" class="lang-btn {% if LANGUAGE_CODE == 'de' %}active{% endif %}">DE</button>
           <button type="submit" name="language" value="ar" class="lang-btn {% if LANGUAGE_CODE == 'ar' %}active{% endif %}">AR</button>
         </form>
-        <div class="d-flex">
-          <a href="#" class="text-white me-3"><i class="bi bi-bag-fill"></i></a>
-          <a href="#" class="text-white"><i class="bi bi-person-fill"></i></a>
+        <div class="d-flex align-items-center">
+          <a href="{% url 'shop:cart' %}" class="text-white position-relative me-3" aria-label="{% trans 'Warenkorb' %}">
+            <i class="bi bi-bag-fill fs-5"></i>
+            {% if cart_count %}
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {{ cart_count }}
+              </span>
+            {% endif %}
+          </a>
         </div>
       </div>
     </div>
   </nav>
 
   {% block hero %}{% endblock %}
-  {% block content %}{% endblock %}
+  <main class="site-main">
+    {% block content %}{% endblock %}
+  </main>
 
   <!-- Footer -->
   <footer class="custom-footer mt-5">

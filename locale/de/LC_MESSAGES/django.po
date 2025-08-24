@@ -6,20 +6,17 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-24 03:55+0200\n"
-"PO-Revision-Date: 2025-08-24 04:09+0200\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: ar\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
-"X-Generator: Poedit 3.6\n"
-
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 #: shop/models.py:79
 msgid "Name (Arabic)"
 msgstr ""
@@ -30,11 +27,11 @@ msgstr ""
 
 #: shop/models.py:90
 msgid "Category"
-msgstr "فئة"
+msgstr ""
 
 #: shop/models.py:91
 msgid "Categories"
-msgstr "فئات"
+msgstr ""
 
 #: shop/models.py:112
 msgid "SKU"
@@ -42,242 +39,239 @@ msgstr ""
 
 #: shop/models.py:113
 msgid "Price"
-msgstr "سعر"
+msgstr ""
 
 #: shop/models.py:114
 msgid "Sale Price"
-msgstr "سعر الخصم"
+msgstr ""
 
 #: shop/models.py:115
 msgid "Stock"
-msgstr "مخزون"
+msgstr ""
 
 #: shop/models.py:116
 msgid "Active"
-msgstr "متوفر"
+msgstr ""
 
 #: shop/models.py:123
 msgid "Product"
-msgstr "منتج"
+msgstr ""
 
 #: shop/models.py:124
 msgid "Products"
-msgstr "منتجات"
+msgstr ""
 
 #: shop/models.py:155
 msgid "Arabic"
-msgstr "عربي"
+msgstr ""
 
 #: shop/models.py:156
 msgid "German"
-msgstr "الألمانية"
+msgstr ""
 
 #: shop/models.py:165
 msgid "Product Translation"
-msgstr "ترجمة المنتج"
+msgstr ""
 
 #: shop/models.py:166
 msgid "Product Translations"
-msgstr "ترجمات المنتجات"
+msgstr ""
 
 #: shop/templates/shop/cart.html:4 shop/templates/shop/cart.html:10
 #: templates/base.html:39
 msgid "Warenkorb"
-msgstr "عربة التسوق"
+msgstr ""
 
 #: shop/templates/shop/cart.html:17 shop/templates/shop/partials/card.html:12
 msgid "Produkt"
-msgstr "منتج"
+msgstr ""
 
 #: shop/templates/shop/cart.html:18 shop/templates/shop/cart.html:78
 #: shop/templates/shop/product_detail.html:62
 msgid "Menge"
-msgstr "عدد"
+msgstr ""
 
 #: shop/templates/shop/cart.html:19 shop/templates/shop/cart.html:50
 #: shop/templates/shop/cart.html:79
 msgid "Einzelpreis"
-msgstr "سعر الواحدة"
+msgstr ""
 
 #: shop/templates/shop/cart.html:20 shop/templates/shop/cart.html:55
 #: shop/templates/shop/cart.html:80
 msgid "Gesamt"
-msgstr "المبلغ الإجمالي"
+msgstr ""
 
 #: shop/templates/shop/cart.html:63
 msgid "Entfernen"
-msgstr "إزالة"
+msgstr ""
 
 #: shop/templates/shop/cart.html:75
 #, python-brace-format
 msgid "🛒 {shop} – Bestellanfrage"
-msgstr "‫🛒 {shop} – الطلب"
+msgstr ""
 
 #: shop/templates/shop/cart.html:76
 #, python-brace-format
 msgid "{shop} – Neue Bestellung"
-msgstr "‫{shop} – طلب جديد"
+msgstr ""
 
 #: shop/templates/shop/cart.html:77
 msgid "Datum"
-msgstr "تاريخ"
+msgstr ""
 
 #: shop/templates/shop/cart.html:81 shop/templates/shop/cart.html:97
 msgid "Zwischensumme"
-msgstr "المجموع الكلي"
+msgstr ""
 
 #: shop/templates/shop/cart.html:82
 msgid "Kundendaten"
-msgstr "بيانات العميل"
+msgstr ""
 
 #: shop/templates/shop/cart.html:83
 msgid "Name"
-msgstr "الاسم"
+msgstr ""
 
 #: shop/templates/shop/cart.html:84
 msgid "Telefon"
-msgstr "الهاتف"
+msgstr ""
 
 #: shop/templates/shop/cart.html:85
 msgid "Adresse"
-msgstr "العنوان"
+msgstr ""
 
 #: shop/templates/shop/cart.html:86
 msgid "Anmerkungen"
-msgstr "ملحوظة"
+msgstr ""
 
 #: shop/templates/shop/cart.html:87
 msgid "WhatsApp Nummer eingeben (z. B. 436601234567):"
-msgstr "أدخل رقم WhatsApp (على سبيل المثال 436601234567):"
+msgstr ""
 
 #: shop/templates/shop/cart.html:88
 msgid "Bestell-E-Mail eingeben (z. B. bestellungen@example.com):"
-msgstr "أدخل بريدك الإلكتروني للطلب (على سبيل المثال orders@example.com):"
+msgstr ""
 
 #: shop/templates/shop/cart.html:92
 msgid "Warenkorb leeren"
-msgstr "حذف ما في عربة التسوق"
+msgstr ""
 
 #: shop/templates/shop/cart.html:108
 msgid "Zur Kasse (WhatsApp)"
-msgstr "اطلب عبر واتساب"
+msgstr ""
 
 #: shop/templates/shop/cart.html:118
 msgid "Per E-Mail bestellen"
-msgstr "اطلب عبر البريد الإلكتروني"
+msgstr ""
 
 #: shop/templates/shop/cart.html:123
 msgid ""
 "Wir erstellen eine Bestellübersicht aus deinem Warenkorb. Du kannst sie vor "
 "dem Senden noch anpassen."
-msgstr "سننشئ ملخصًا لطلبك من سلة التسوق. يمكنك تعديله قبل الإرسال."
+msgstr ""
 
 #: shop/templates/shop/cart.html:128
 msgid "Dein Warenkorb ist leer."
-msgstr "سلة التسوق الخاصة بك فارغة."
+msgstr ""
 
 #: shop/templates/shop/cart.html:129
 msgid "Weiter einkaufen"
-msgstr "متابعة التسوق"
+msgstr ""
 
 #: shop/templates/shop/index.html:4 templates/base.html:23
 msgid "Startseite"
-msgstr "الرئيسية"
+msgstr ""
 
 #: shop/templates/shop/index.html:12
 msgid "Vielseitiger Online-Shop"
-msgstr "متجر متعدد الاستخدامات عبر الإنترنت"
+msgstr ""
 
 #: shop/templates/shop/index.html:13
 msgid "Jetzt einkaufen"
-msgstr "تسوق الآن"
+msgstr ""
 
 #: shop/templates/shop/index.html:45
 msgid "Im Shop suchen"
-msgstr "ابحث في المتجر"
+msgstr ""
 
 #: shop/templates/shop/index.html:56
 msgid "Produkte suchen…"
-msgstr "ابحث عن المنتجات…"
+msgstr ""
 
 #: shop/templates/shop/index.html:60
 msgid "Suche löschen"
-msgstr "مسح البحث"
+msgstr ""
 
 #: shop/templates/shop/index.html:64
 msgid "Suchen"
-msgstr "يطلب"
+msgstr ""
 
 #: shop/templates/shop/index.html:72
 #, python-format
 msgid "Ergebnisse für “%(q)s”"
-msgstr "نتائج البحث عن “%(q)s”"
+msgstr ""
 
 #: shop/templates/shop/partials/card.html:16
 #: shop/templates/shop/product_detail.html:33
 msgid "Angebot"
-msgstr "عرض"
+msgstr ""
 
 #: shop/templates/shop/partials/card.html:47
 #: shop/templates/shop/product_detail.html:66
 msgid "In den Warenkorb"
-msgstr "أضف إلى السلة"
+msgstr ""
 
 #: shop/templates/shop/partials/sections.html:11
 msgid "Keine Produkte gefunden."
-msgstr "لم يتم العثور على أي منتجات."
+msgstr ""
 
 #: shop/templates/shop/product_detail.html:72
 msgid "Kategorie"
-msgstr "فئة"
+msgstr ""
 
 #: shop/views.py:46
 msgid "Sonstiges"
-msgstr "متنوع"
+msgstr ""
 
 #: shop/views.py:216
 msgid "Ungültige Produkt-/Mengenangabe."
-msgstr "كمية المنتج غير صالحة."
+msgstr ""
 
 #: shop/views.py:231
 msgid "Zum Warenkorb hinzugefügt."
-msgstr "تمت إضافته إلى سلة التسوق."
+msgstr ""
 
 #: shop/views.py:246
 msgid "Ungültige Aktualisierung."
-msgstr "تحديث غير صالح."
+msgstr ""
 
 #: templates/base.html:24
 msgid "Über uns"
-msgstr "من نحن"
+msgstr ""
 
 #: templates/base.html:25
 msgid "Kontakt"
-msgstr "تواصل معنا"
+msgstr ""
 
 #: templates/base.html:64
 msgid "Datenschutz"
-msgstr "حماية البيانات"
+msgstr ""
 
 #: templates/base.html:65
 msgid "AGB"
-msgstr "‫AGB"
+msgstr ""
 
 #: templates/base.html:66
 msgid "Support"
-msgstr "الدعم"
+msgstr ""
 
 #: templates/base.html:73
 msgid "Dein Shop für alles – Qualität trifft Einfachheit."
-msgstr "متجرك لكل ما تحتاجه – الجودة تلتقي بالبساطة."
+msgstr ""
 
 #: templates/base.html:83
 msgid "Alle Rechte vorbehalten."
-msgstr "جميع الحقوق محفوظة."
+msgstr ""
 
 #: templates/base.html:87
 msgid "Nach oben"
-msgstr "لأعلى"
-
-#~ msgid "Shop"
-#~ msgstr "المتجر"
+msgstr ""

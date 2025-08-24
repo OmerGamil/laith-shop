@@ -1,7 +1,15 @@
 {# templates/shop/partials/card.html #}
 {% load i18n static %}
 
-<div class="card h-100 border-0 shadow-sm rounded-3 product-card">
+<div class="card h-100 border-0 shadow-sm rounded-3 product-card position-relative">
+  {# create href using the routes above #}
+  {% if product.slug %}
+    {% url 'shop:product_detail' slug=product.slug as detail_href %}
+  {% else %}
+    {% url 'shop:product_detail_by_id' pk=product.pk as detail_href %}
+  {% endif %}
+
+  <a href="{{ detail_href }}" class="stretched-link" aria-label="{{ product.display_title|default:_('Produkt') }}"></a>
 
   {% if product.sale_price and product.price and product.sale_price < product.price %}
     <div class="badge bg-dark text-white position-absolute rounded-pill px-3 py-2" style="top:.75rem; right:.75rem;">
@@ -19,8 +27,6 @@
 
   <div class="card-body p-4 text-center">
     <h5 class="fw-bold">{{ product.display_title }}</h5>
-    {# optional teaser #}
-    {# <p class="text-muted small mt-2">{{ product.display_description|truncatechars:80 }}</p> #}
 
     {% if product.sale_price and product.price and product.sale_price < product.price %}
       <div>
@@ -33,8 +39,13 @@
   </div>
 
   <div class="card-footer bg-white border-0 text-center pb-4">
-    <a class="btn btn-outline-dark rounded-3 px-4 py-2 fw-semibold" href="#">
-      {% trans "In den Warenkorb" %}
-    </a>
+    <form method="post" action="{% url 'shop:cart_add' %}" class="add-to-cart-form" data-ajax="1">
+      {% csrf_token %}
+      <input type="hidden" name="product_id" value="{{ product.id }}">
+      <input type="hidden" name="qty" value="1">
+      <button class="btn btn-outline-dark rounded-3 px-4 py-2 fw-semibold" type="submit" style="position:relative; z-index:2;">
+        {% trans "In den Warenkorb" %}
+      </button>
+    </form>
   </div>
 </div>

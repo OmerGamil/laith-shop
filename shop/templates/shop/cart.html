@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "Warenkorb" %} – Earth Store{% endblock %}
+
+{% block full_page %}d-flex flex-column min-vh-100{% endblock %}
+
+{% block content %}
+<div class="container py-10">
+  <h1 class="mb-4">{% trans "Warenkorb" %}</h1>
+
+  {% if lines %}
+    <div class="table-responsive">
+      <table class="table align-middle cart-table">
+        <thead class="d-md-table-header-group">
+          <tr>
+            <th>{% trans "Produkt" %}</th>
+            <th class="text-center">{% trans "Menge" %}</th>
+            <th class="text-end">{% trans "Einzelpreis" %}</th>
+            <th class="text-end">{% trans "Gesamt" %}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for li in lines %}
+          <tr class="cart-row" data-unit="{{ li.unit_price|floatformat:2 }}">
+            <td class="cart-item-media">
+              <div class="d-flex align-items-center gap-3">
+                {% if li.product.image %}
+                  <img src="{{ li.product.image.url }}" alt="{% firstof li.product.display_title li.product %}" class="rounded" style="width:64px;height:64px;object-fit:cover;">
+                {% endif %}
+                <div class="cart-item-title">
+                  {% url 'shop:product_detail' slug=li.product.slug as detail_href %}
+                  <a href="{{ detail_href }}" class="text-decoration-none fw-semibold cart-title-link">
+                    {% firstof li.product.display_title li.product %}
+                  </a>
+                </div>
+              </div>
+            </td>
+
+            <td class="cart-item-qty text-center" style="max-width:140px;">
+              <form method="post" action="{% url 'shop:cart_update' %}" class="cart-update-form d-inline" data-ajax="1">
+                {% csrf_token %}
+                <input type="hidden" name="product_id" value="{{ li.product.id }}">
+                <input class="form-control form-control-sm text-center js-qty" type="number" name="qty" min="0" value="{{ li.qty }}">
+              </form>
+            </td>
+
+            <td class="cart-item-unit text-end">
+              <span class="cart-label d-lg-none">{% trans "Einzelpreis" %}</span>
+              <span class="js-unit">{{ li.unit_price }} €</span>
+            </td>
+
+            <td class="cart-item-total text-end fw-semibold">
+              <span class="cart-label d-lg-none">{% trans "Gesamt" %}</span>
+              <span class="js-line-total">{{ li.line_total }} €</span>
+            </td>
+
+            <td class="cart-item-actions text-end">
+              <form method="post" action="{% url 'shop:cart_remove' %}" class="d-inline cart-remove-form" data-ajax="1">
+                {% csrf_token %}
+                <input type="hidden" name="product_id" value="{{ li.product.id }}">
+                <button class="btn btn-sm btn-outline-danger">{% trans "Entfernen" %}</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    {# ------- Checkout summary + i18n labels exported to JS via data-* ------- #}
+    <div
+      class="cart-summary d-flex flex-column flex-md-row justify-content-between align-items-center align-items-md-start mt-3 gap-3"
+      data-i18n-order-title="{% trans '🛒 {shop} – Bestellanfrage' %}"
+      data-i18n-email-subject="{% trans '{shop} – Neue Bestellung' %}"
+      data-i18n-date="{% trans 'Datum' %}"
+      data-i18n-qty="{% trans 'Menge' %}"
+      data-i18n-unit="{% trans 'Einzelpreis' %}"
+      data-i18n-line="{% trans 'Gesamt' %}"
+      data-i18n-subtotal="{% trans 'Zwischensumme' %}"
+      data-i18n-customer-data="{% trans 'Kundendaten' %}"
+      data-i18n-name="{% trans 'Name' %}"
+      data-i18n-phone="{% trans 'Telefon' %}"
+      data-i18n-address="{% trans 'Adresse' %}"
+      data-i18n-notes="{% trans 'Anmerkungen' %}"
+      data-i18n-enter-wa="{% trans 'WhatsApp Nummer eingeben (z. B. 436601234567):' %}"
+      data-i18n-enter-email="{% trans 'Bestell-E-Mail eingeben (z. B. bestellungen@example.com):' %}"
+    >
+      <form method="post" action="{% url 'shop:cart_clear' %}" data-ajax="1" class="cart-clear-form">
+        {% csrf_token %}
+        <button class="btn btn-outline-secondary">{% trans "Warenkorb leeren" %}</button>
+      </form>
+
+      <div class="d-flex flex-column align-items-md-end align-items-center text-end ms-md-auto">
+        <div class="fs-5">
+          {% trans "Zwischensumme" %}: <strong id="js-cart-subtotal">{{ subtotal }} €</strong>
+        </div>
+
+        <div class="d-flex flex-wrap justify-content-end gap-2 mt-2">
+          <button
+            type="button"
+            class="btn btn-brand px-4"
+            data-channel="whatsapp"
+            data-wa="+436767571869"  {# e.g. 436601234567 #}
+            data-shopname="Earth Store"
+          >
+            {% trans "Zur Kasse (WhatsApp)" %}
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-outline-dim px-4"
+            data-channel="email"
+            data-email="omer.ahmed.301002@gmail.com" {# e.g. orders@example.com #}
+            data-shopname="Earth Store"
+          >
+            {% trans "Per E-Mail bestellen" %}
+          </button>
+        </div>
+
+        <p class="text-muted small mt-2">
+          {% trans "Wir erstellen eine Bestellübersicht aus deinem Warenkorb. Du kannst sie vor dem Senden noch anpassen." %}
+        </p>
+      </div>
+    </div>
+  {% else %}
+    <p class="text-muted">{% trans "Dein Warenkorb ist leer." %}</p>
+    <a class="btn btn-dark mt-2" href="{% url 'shop:home' %}">{% trans "Weiter einkaufen" %}</a>
+  {% endif %}
+</div>
+{% endblock %}

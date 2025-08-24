@@ -2,6 +2,7 @@ import os
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.utils.text import slugify
+from django.urls import reverse
 from django.dispatch import receiver
 from django.db.models.signals import post_save, post_delete
 
@@ -142,6 +143,11 @@ class Product(models.Model):
                 # update only the slug to avoid messing with timestamps
                 Product.objects.filter(pk=self.pk).update(slug=new_slug)
                 self.slug = new_slug  # keep in-memory object in sync
+
+    def get_absolute_url(self):
+        if getattr(self, "slug", None):
+            return reverse("product_detail", kwargs={"slug": self.slug})
+        return reverse("product_detail_by_id", kwargs={"pk": self.pk})
 
 
 class ProductTranslation(models.Model):

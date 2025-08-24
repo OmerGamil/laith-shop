@@ -20,6 +20,7 @@
 <div class="reveal-next">
   <section id="shop" class="shop-content py-6 bg-white">
     <div class="container px-4 px-lg-5 mt-5">
+
       {% if sections %}
       {# sticky, rounded rail #}
       <nav class="category-nav sticky-top" style="top:64px">
@@ -28,15 +29,19 @@
             {% for s in sections %}
               <li class="nav-item">
                 <a class="nav-link category-link{% if forloop.first and not is_search %} active{% endif %}"
-                  href="#{{ s.anchor }}" data-anchor="{{ s.anchor }}">
+                   href="#{{ s.anchor }}" data-anchor="{{ s.anchor }}">
                   {{ s.label }}
                 </a>
               </li>
             {% endfor %}
           </ul>
 
-          <!-- Search pill -->
-          <form class="shop-search" method="get" action="">
+          <!-- Search pill (AJAX-enhanced, still works without JS) -->
+          <form id="shop-search-form"
+                class="shop-search"
+                method="get"
+                action="{% url 'shop:home' %}"
+                data-ajax-url="{% url 'shop:ajax_search' %}">
             <label class="visually-hidden" for="shop-q">{% trans "Im Shop suchen" %}</label>
             <div class="search-pill">
               <!-- simple inline search icon -->
@@ -46,43 +51,34 @@
               </svg>
 
               <input id="shop-q" name="q" type="search"
-                    class="search-input"
-                    value="{{ q|default_if_none:'' }}"
-                    placeholder="{% trans 'Produkte suchen…' %}">
+                     class="search-input"
+                     value="{{ q|default_if_none:'' }}"
+                     placeholder="{% trans 'Produkte suchen…' %}">
+
               {% if q %}
                 <button class="clear-btn" type="button"
                         aria-label="{% trans 'Suche löschen' %}"
                         onclick="const i=document.getElementById('shop-q');i.value=''; this.form.submit();">&times;</button>
               {% endif %}
+
               <button class="search-btn" type="submit">{% trans 'Suchen' %}</button>
             </div>
           </form>
         </div>
       </nav>
+
       {% if is_search %}
         <p class="text-muted text-center mt-2">
           {% blocktrans %}Ergebnisse für “{{ q }}”{% endblocktrans %}
         </p>
       {% endif %}
       {% endif %}
-      {# sections #}
-      {% for section in sections %}
-      <h2 id="{{ section.anchor }}" class="section-heading display-6 fw-semibold mt-5 mb-4">
-        {{ section.label }}
-      </h2>
 
-        <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xxl-4">
-          {% for product in section.products %}
-            <div class="col mb-5">
-              {% include 'shop/partials/card.html' with product=product %}
-            </div>
-          {% empty %}
-            <p class="text-muted">{% trans "Keine Produkte in dieser Kategorie." %}</p>
-          {% endfor %}
-        </div>
-      {% empty %}
-        <p class="text-center text-muted">{% trans "Keine Produkte gefunden." %}</p>
-      {% endfor %}
+      {# Results wrapper for initial render + AJAX updates #}
+      <div id="shop-results">
+        {% include "shop/partials/sections.html" %}
+      </div>
+
     </div>
   </section>
 </div>

@@ -1,0 +1,14 @@
+{# templates/shop/partials/sections.html #}
+{% load i18n %}
+{% for sec in sections %}
+  <h2 id="{{ sec.anchor }}" class="mt-5 mb-3">{{ sec.label }}</h2>
+  <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
+    {% for product in sec.products %}
+      <div class="col mb-5">
+        {% include "shop/partials/card.html" %}
+      </div>
+    {% empty %}
+      <div class="col-12 text-muted py-5">{% trans "Keine Produkte gefunden." %}</div>
+    {% endfor %}
+  </div>
+{% endfor %}

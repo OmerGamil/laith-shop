@@ -1,19 +1,78 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n static %}
+
+{% block title %}{{ product.display_title }} – Earth Store{% endblock %}
+
+{% block full_page %}d-flex flex-column min-vh-100{% endblock %}
 
 {% block content %}
-<div class="container my-5">
+<div class="container product-detail">
   <div class="row g-4">
-    <div class="col-md-6">
-      {% if product.image %}
-        <img src="{{ product.image.url }}" alt="{{ product }}" class="img-fluid rounded">
-      {% endif %}
+
+    {# MEDIA #}
+    <div class="col-lg-6">
+      <div class="pd-media card border-0 shadow-sm rounded-4">
+        <div class="pd-media-box">
+          {% comment %} Try real image, fall back to placeholder in browser if it 404s {% endcomment %}
+          {% if product.image %}
+            <img
+              src="{{ product.image.url }}"
+              alt="{{ product.display_title }}"
+              onerror="this.onerror=null;this.src='{% static 'shop/assets/product.jpeg' %}';"
+            >
+          {% else %}
+            <img
+              src="{% static 'shop/assets/product.jpeg' %}"
+              alt="{{ product.display_title }}"
+            >
+          {% endif %}
+        </div>
+
+        {% if product.sale_price and product.price and product.sale_price < product.price %}
+          <span class="pd-badge-sale bg-dark">{% trans "Angebot" %}</span>
+        {% endif %}
+      </div>
     </div>
-    <div class="col-md-6">
-      <h1 class="h3">{{ product.name|default:product.title|default:product }}</h1>
-      {% if product.price %}<p class="fs-4 fw-semibold">{{ product.price }} €</p>{% endif %}
-      {% if product.description %}<p>{{ product.description }}</p>{% endif %}
+
+    <!-- Summary -->
+    <div class="col-lg-6">
+      <div class="pd-summary">
+        <h1 class="pd-title h2 fw-bold mb-3">{{ product.display_title }}</h1>
+
+        <div class="pd-price mb-3">
+          {% if product.sale_price and product.price and product.sale_price < product.price %}
+            <span class="pd-old me-2">{{ product.price }} €</span>
+            <span class="pd-new">{{ product.sale_price }} €</span>
+          {% else %}
+            {% if product.price %}<span class="pd-new">{{ product.price }} €</span>{% endif %}
+          {% endif %}
+        </div>
+
+        {% if product.display_description %}
+          <div class="pd-desc text-muted mb-4">
+            {{ product.display_description|safe }}
+          </div>
+        {% endif %}
+
+        <form method="post" action="{% url 'shop:cart_add' %}" class="pd-actions d-flex align-items-center gap-3 add-to-cart-form" data-ajax="1">
+          {% csrf_token %}
+          <input type="hidden" name="product_id" value="{{ product.id }}">
+          <div class="pd-qty input-group input-group-sm" style="width: 140px;">
+            <span class="input-group-text">{% trans "Menge" %}</span>
+            <input type="number" class="form-control" min="1" value="1" name="qty">
+          </div>
+          <button class="btn btn-brand btn-lg px-4">
+            {% trans "In den Warenkorb" %}
+          </button>
+        </form>
+
+        <ul class="pd-meta list-unstyled small text-muted mt-4">
+          {% if product.sku %}<li><strong>SKU:</strong> {{ product.sku }}</li>{% endif %}
+          {% if product.category_display_title %}<li><strong>{% trans "Kategorie" %}:</strong> {{ product.category_display_title }}</li>{% endif %}
+        </ul>
+      </div>
     </div>
+
   </div>
 </div>
 {% endblock %}
